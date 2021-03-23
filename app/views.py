@@ -5,13 +5,12 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
 
-from app import app
-from flask import render_template, request, redirect, url_for, flash
-from werkzeug.utils import secure_filename
-from flask import send_from_directory
-from .forms import PropertyForm
-from app import db
+import os
+from app import app, db
 from app.models import Property
+from app.forms import PropertyForm
+from flask import render_template, request, redirect, url_for, flash, send_from_directory
+from werkzeug.utils import secure_filename
 
 ###
 # Routing for your application.
@@ -33,20 +32,21 @@ def property():
     form = PropertyForm()
 
     if request.method == 'POST' and form.validate_on_submit():
-        title = form.title.data
-        description = form.description.data
-        rooms = form.rooms.data
-        bathrooms = form.bathrooms.data
-        price = form.price.data
-        ptype = dict(form.ptype.choices).get(form.ptype.data)
-        location = form.location.data
+        title = request.form['title']
+        description = request.form['description']
+        rooms = int(request.form['rooms'])
+        bathrooms = int(request.form['bathrooms'])
+        price = float(request.form['price'].replace(',',''))
+        ptype = request.form['ptype']
+        location = request.form['location']
         photo = form.photo.data
 
         filename = secure_filename(photo.filename)
-        prprty = Property(title=title, description=description, rooms=rooms, bathrooms=bathrooms, price=price, ptype=ptype, location=location, photo=filename)
+        photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        prprty = Property(title, description, rooms, bathrooms, price, ptype, location, filename)
         db.session.add(prprty)
         db.session.commit()
-        photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         flash('Property successfully added!', 'success')
         return redirect(url_for('properties'))
     
@@ -58,15 +58,16 @@ def properties():
 
     return render_template('properties.html', properties=properties)
 
-@app.route('/property/<propertyid>', methods=['POST', 'GET'])
+@app.route('/property/<propertyid>')
 def viewproperty(propertyid):
     property = Property.query.get(propertyid)
 
     return render_template('property.html', property=property)
 
-@app.teardown_appcontext
-def shutdown_session(exception=None):
-    db.session.remove()
+@app.route('/uploads/<filename>')
+def getimage(filename):
+    rootdir = os.getcwd()
+    return  send_from_directory(os.path.join(rootdir,app.config['UPLOAD_FOLDER']),filename)
 
 ###
 # The functions below should be applicable to all Flask apps.

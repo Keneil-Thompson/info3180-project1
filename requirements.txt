@@ -11,4 +11,5 @@ Flask-SQLAlchemy
 Flask-Migrate
 Flask-Script
 Flask-Login
-psycopg2
+psycopg2-binary==2.8.6
+alembic==1.5.7

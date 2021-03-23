@@ -17,9 +17,7 @@
                 <p class="location "><i class="fa fa-map-marker" aria-hidden="true"></i> {{ property.location }}</p>
                 <span class="attribute price">${{ property.price }}</span>
             </div>
-            <form method="post" action="{{ url_for('get_property', propertyid=property.id) }}">
-                <button type="submit" class="btn view-btn">View Property</button>
-            </form>
+            <a href="{{ url_for('viewproperty', propertyid=property.id) }}"><button type="submit" class="btn view-btn">View Property</button></a>
         </div>
         {% endfor %}
     </div>

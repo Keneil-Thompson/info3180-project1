@@ -5,12 +5,12 @@
 <div class="property-card">
 
     <div>
-        <img class="single" src="{{ url_for('static', filename=uploads/ + property.photo_file) }}" />
+        <img class="single" src="{{ url_for('getimage', filename=property.photo) }}">
     </div>
     <div class="single-card-body">
         <h2>{{ property.title }}</h2>
         <div class="attributes">
-            <span class="attribute price">${{ property.price }}</span> <span class="attribute type">{{ property.prop_type }}</span>
+            <span class="attribute price">${{ property.price }}</span> <span class="attribute type">{{ property.ptype }}</span>
         </div>
         <p>{{ property.description }}</p>
         <div class="add-tab">

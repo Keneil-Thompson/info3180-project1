@@ -1,3 +1,177 @@
 body {
-    padding-top: 50px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    background-color: #e9e9e9;
+}
+.bg-primary {
+    background-color: #14B7A6 !important;
+}
+
+.prop-list {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 35px;
+}
+
+.overview-card {
+    background-color: #FFFFFF;
+    padding: 0px;
+    width: 350px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.view-btn {
+    width: 350px;
+    height: 45px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: #14B7A6;
+    color: white;
+}
+
+.main {
+    object-fit: cover;
+    width: 350px;
+    height: 228px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 15px;
+    height: 140px;
+}
+
+.location {
+    color: grey;
+}
+
+.attribute {
+    color: white;
+    padding: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.type {
+    background-color: #ffe000;
+}
+
+.price {
+    background-color: #03a9f4;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.form {
+    background-color: white;
+    padding: 40px;
+    border-radius: 5px;
+    width: 800px;
+    margin-top: 20px;
+}
+
+.form-heading {
+    font-weight: bold;
+}
+
+.double {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.form-div {
+    margin-bottom: 15px;
+}
+
+.formfield {
+    padding: 8px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.long {
+    width: 600px;
+}
+
+.short {
+    width: 275px;
+}
+
+.add {
+    background-color: #03a9f4;
+    color: white;
+}
+
+.jumbotron {
+    background-color: whitesmoke;
+}
+
+.property-card {
+    display: flex;
+    flex-direction: row;
+    height: 370px;
+    width: 850px;
+    background-color: white;
+    margin: 0;
+    border-radius: 3px;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+
+.single {
+    object-fit: cover;
+    width: 330px;
+    height: 370px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.single-card-body {
+    padding: 30px;
+}
+
+.attributes {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.email-btn {
+    background-color: #14B7A6;
+    color: white;
+}
+
+.add-tab {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
 }
