@@ -6,8 +6,12 @@ This file creates your application.
 """
 
 from app import app
-from flask import render_template, request, redirect, url_for
-
+from flask import render_template, request, redirect, url_for, flash
+from werkzeug.utils import secure_filename
+from flask import send_from_directory
+from .forms import PropertyForm
+from app import db
+from app.models import Property
 
 ###
 # Routing for your application.
@@ -22,8 +26,47 @@ def home():
 @app.route('/about/')
 def about():
     """Render the website's about page."""
-    return render_template('about.html', name="Mary Jane")
+    return render_template('about.html', name="Keneil Thompson")
 
+@app.route('/property', methods=['POST', 'GET'])
+def property():
+    form = PropertyForm()
+
+    if request.method == 'POST' and form.validate_on_submit():
+        title = form.title.data
+        description = form.description.data
+        rooms = form.rooms.data
+        bathrooms = form.bathrooms.data
+        price = form.price.data
+        ptype = dict(form.ptype.choices).get(form.ptype.data)
+        location = form.location.data
+        photo = form.photo.data
+
+        filename = secure_filename(photo.filename)
+        prprty = Property(title=title, description=description, rooms=rooms, bathrooms=bathrooms, price=price, ptype=ptype, location=location, photo=filename)
+        db.session.add(prprty)
+        db.session.commit()
+        photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        flash('Property successfully added!', 'success')
+        return redirect(url_for('properties'))
+    
+    return render_template('form.html', form=form)
+
+@app.route('/properties')
+def properties():
+    properties = Property.query.all()
+
+    return render_template('properties.html', properties=properties)
+
+@app.route('/property/<propertyid>', methods=['POST', 'GET'])
+def viewproperty(propertyid):
+    property = Property.query.get(propertyid)
+
+    return render_template('property.html', property=property)
+
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db.session.remove()
 
 ###
 # The functions below should be applicable to all Flask apps.

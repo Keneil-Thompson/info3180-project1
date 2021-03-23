@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<div class="property-card">
+
+    <div>
+        <img class="single" src="{{ url_for('static', filename=uploads/ + property.photo_file) }}" />
+    </div>
+    <div class="single-card-body">
+        <h2>{{ property.title }}</h2>
+        <div class="attributes">
+            <span class="attribute price">${{ property.price }}</span> <span class="attribute type">{{ property.prop_type }}</span>
+        </div>
+        <p>{{ property.description }}</p>
+        <div class="add-tab">
+            <p><i class="fa fa-bed"></i> {{ property.rooms }} Bedrooms</p>  
+            <p><i class="fa fa-shower"></i> {{ property.bathrooms }} Bathrooms</p>
+        </div>
+        <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ property.location }}</p>
+
+        <button type="submit" class="btn email-btn">Email Realtor</button>
+    </div>
+
+</div>
+
+{% endblock %}

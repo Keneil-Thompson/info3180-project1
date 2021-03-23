@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<h1 class="form-heading">Add New Property</h1>
+
+<form class="form" method="POST" action="{{ url_for('property') }}" enctype="multipart/form-data">
+    
+    {{ form.csrf_token }}
+
+    <div class="form-div">
+        {{ form.title.label(class="form-heading") }}
+        <br>
+        {{ form.title(class="formfield long") }}
+    </div>
+
+    <div class="form-div area">
+        {{ form.description.label(class="form-heading") }}
+        <br>
+        {{ form.description(class="formfield long") }}
+    </div>
+
+    <div class="form-div double">
+        <div>
+            {{ form.rooms.label(class="form-heading") }}
+            <br>
+            {{ form.rooms(class="formfield short") }}
+        </div>
+
+        <div>
+            {{ form.bathrooms.label(class="form-heading") }}
+            <br>
+            {{ form.bathrooms(class="formfield short") }}
+        </div>
+    </div>
+
+    <div class="form-div double">
+        <div>
+            {{ form.price.label(class="form-heading") }}
+            <br>
+            {{ form.price(class="formfield short") }}
+        </div>
+
+        <div>
+            {{ form.ptype.label(class="form-heading") }}
+            <br>
+            {{ form.ptype(class="formfield short") }}
+        </div>
+    </div>
+
+    <div class="form-div">
+        {{ form.location.label(class="form-heading") }}
+        <br>
+        {{ form.location(class="formfield short") }}
+    </div>
+
+    <div class="form-div">
+        {{ form.photo.label(class="form-heading") }}
+        <br>
+        {{ form.photo(class="formfield short") }}
+    </div>
+
+    <button type="submit" class="btn add">Add Property</button>
+</form>
+
+{% endblock %}

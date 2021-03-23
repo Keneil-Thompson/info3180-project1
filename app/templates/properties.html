@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+{% include 'flash_messages.html' %}
+
+{% if properties|length > 0 %} 
+    <h1 class="page-header">Properties</h1>
+    <div class="prop-list">
+        {% for property in properties %}
+        <div class="overview-card">
+            <div>
+                <img class='main' src="{{ url_for('static', filename=uploads/ + property.photo) }}" />
+            </div>
+            <div class="card-body">
+                <h5 class="title">{{ property.title }} </h5>
+                <p class="location "><i class="fa fa-map-marker" aria-hidden="true"></i> {{ property.location }}</p>
+                <span class="attribute price">${{ property.price }}</span>
+            </div>
+            <form method="post" action="{{ url_for('get_property', propertyid=property.id) }}">
+                <button type="submit" class="btn view-btn">View Property</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <h3>No properties available</h3>
+{% endif %}
+
+{% endblock %}
