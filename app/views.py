@@ -5,13 +5,15 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
 
-import os
+
+
 from app import app, db
-from app.models import Property
 from app.forms import PropertyForm
+from app.models import Property
+import os
 from flask import render_template, request, redirect, url_for, flash, send_from_directory
 from werkzeug.utils import secure_filename
-
+import psycopg2
 ###
 # Routing for your application.
 ###
@@ -67,7 +69,8 @@ def viewproperty(propertyid):
 @app.route('/uploads/<filename>')
 def getimage(filename):
     rootdir = os.getcwd()
-    return  send_from_directory(os.path.join(rootdir,app.config['UPLOAD_FOLDER']),filename)
+
+    return  send_from_directory(os.path.join(rootdir, app.config['UPLOAD_FOLDER']), filename)
 
 ###
 # The functions below should be applicable to all Flask apps.

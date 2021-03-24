@@ -3,11 +3,12 @@ body {
     padding-bottom: 70px;
     background-color: #e9e9e9;
 }
+
 .bg-primary {
     background-color: #14B7A6 !important;
 }
 
-.prop-list {
+.property {
     margin: 0;
     padding: 0;
     display: grid;
@@ -16,7 +17,7 @@ body {
     margin-top: 35px;
 }
 
-.overview-card {
+.card {
     background-color: #FFFFFF;
     padding: 0px;
     width: 350px;
@@ -24,7 +25,7 @@ body {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-.view-btn {
+.view {
     width: 350px;
     height: 45px;
     border-top-left-radius: 0;
@@ -108,6 +109,38 @@ h1 {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    color: #808080;
+}
+
+.file {
+    color: transparent;
+}
+
+.file::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.file::before {
+    content: 'Browse';
+    color: #808080;
+    display: inline-block;
+    background: white;
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-size: 17px;
+}
+
+.file:hover::before {
+    border-color: black;
+}
+
+.file:active {
+    outline: 0;
 }
 
 .long {
@@ -119,14 +152,9 @@ h1 {
 }
 
 .add {
-    background-color: #03a9f4;
+    background-color: #1E90FF;
     color: white;
 }
-
-.jumbotron {
-    background-color: whitesmoke;
-}
-
 .property-card {
     display: flex;
     flex-direction: row;
@@ -153,7 +181,7 @@ h1 {
     border-bottom-left-radius: 3px;
 }
 
-.single-card-body {
+.single-body {
     padding: 30px;
 }
 
@@ -164,13 +192,12 @@ h1 {
     flex-direction: row;
     gap: 10px;
 }
-
-.email-btn {
+.email {
     background-color: #14B7A6;
     color: white;
 }
 
-.add-tab {
+.att-tab {
     display: flex;
     flex-direction: row;
     gap: 20px;

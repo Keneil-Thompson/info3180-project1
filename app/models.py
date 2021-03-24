@@ -7,7 +7,7 @@ class Property(db.Model):
     title = db.Column(db.String(150))
     description = db.Column(db.String(800))
     rooms = db.Column(db.Integer)
-    bathrooms = db.Column(db.Integer)
+    bathrooms = db.Column(db.Numeric(2,1))
     price = db.Column(db.Numeric(9,2))
     ptype = db.Column(db.String(30))
     location = db.Column(db.String(100))
